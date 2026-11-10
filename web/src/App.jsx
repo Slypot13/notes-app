@@ -32,9 +32,10 @@ export default function App() {
       {notes
         .filter((n) => n.title.includes(q))
         .map((n) => (
-          <div>
+          <div key={n.id}>
             <h2>{n.title}</h2>
-            <p dangerouslySetInnerHTML={{ __html: n.body }} />
+            {/* Rendu en texte : React échappe le contenu, aucune balise HTML n'est interprétée */}
+            <p>{n.body}</p>
           </div>
         ))}
     </div>

@@ -17,8 +17,25 @@ function save(n) {
   fs.writeFileSync(FILE, JSON.stringify(n, null, 2));
 }
 
+const MAX_TITLE = 200;
+const MAX_BODY = 10000;
+const MAX_TAG = 50;
+
+function isOptionalString(v, max) {
+  return v === undefined || (typeof v === "string" && v.length <= max);
+}
+
 app.post("/notes", (req, res) => {
-  const d = req.body;
+  const d = req.body ?? {};
+  if (
+    typeof d.title !== "string" ||
+    d.title.trim() === "" ||
+    d.title.length > MAX_TITLE ||
+    !isOptionalString(d.body, MAX_BODY) ||
+    !isOptionalString(d.tag, MAX_TAG)
+  ) {
+    return res.status(400).json({ error: "Données de note invalides" });
+  }
   const n = load();
   const note = { id: n.length + 1, title: d.title, body: d.body, tag: d.tag };
   n.push(note);
