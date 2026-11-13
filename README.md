@@ -1,6 +1,6 @@
 # Notes App
 
-Groupe : Pottier Sylvain, Blondeau Ayrton, Huart Geoffroy et Soulet Kylian.
+Groupe : Pottier Sylvain, Blondeau Ayrton, Huart Geoffroy, Adib Houssine et Soulet Kylian.
 
 ## Présentation
 
